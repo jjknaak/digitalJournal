@@ -1,0 +1,150 @@
+<?php # Script 18.1 - header.html
+// This page begins the HTML header for the site.
+
+// Start output buffering:
+ob_start();
+
+// Initialize a session:
+session_start();
+
+// Check for a $page_title value:
+if (!isset($page_title)) {
+	$page_title = 'User Registration';
+}
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+ <meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 	
+		<title><?php echo $page_title; ?></title>
+		<meta name="description" content="Digital Journal for Parkway Apostolic Church Members" />
+		<meta name="keywords" content="journal, pentocostal, digital journal, church, soap, bible" />
+		<meta name="author" content="Parkway Church" />
+	
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+		<script src="includes/js/modernizr.custom.js"></script>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" type="text/css" href="includes/css/layout.css" />
+<link rel="stylesheet" type="text/css" href="myriadFont/myriadStyle.css" />
+<link rel="stylesheet" type="text/css" href="includes/css/default.css" />
+<link rel="stylesheet" type="text/css" href="includes/css/component.css" />
+<link rel="stylesheet" type="text/css" href="includes/css/flaticon.css" />
+<link rel="stylesheet" type="text/css" href="includes/css/mobileStyles.css" />
+
+
+
+</head>
+	
+<body>
+	<div class="main clearfix">
+		<a href="index.php">
+			<img src="images/homepage_currentFocusImage3.png" class="logo" />
+		</a>	
+					<nav id="menu" class="nav">		
+							
+					<ul>
+						<li>
+							<a href="index.php">
+								<span class="icon">
+									<i aria-hidden="true" class="flaticon-home"></i>
+								</span>
+								<span>Home</span>
+							</a>
+						</li>
+						<?php # Script 18.2 - footer.html
+	// This page completes the HTML template.
+
+	// Display links based upon the login status:
+	if (isset($_SESSION['id'])) {
+
+		echo '<li>
+							<a href="journal.php">
+								<span class="icon"> 
+									<i aria-hidden="true" class="flaticon-open-book"></i>
+								</span>
+								<span>Journal</span>
+							</a>
+						</li>
+						<li>
+							<a href="journalEntry.php">
+								<span class="icon">
+									<i aria-hidden="true" class="flaticon-writing"></i>
+								</span>
+								<span>Journal Entry</span>
+							</a>
+						</li>
+						<li>
+							<a href="logout.php">
+								<span class="icon">
+									<i aria-hidden="true" class="flaticon-direction"></i>
+								</span>
+								<span>Logout</span>
+							</a>
+						</li>
+
+	';
+
+		// Add links if the user is an administrator:
+		if ($_SESSION['user_level'] == 'coach') {
+			echo '<li>
+							<a href="admin.php">
+								<span class="icon"> 
+									<i aria-hidden="true" class="flaticon-admin-with-cogwheels"></i>
+								</span>
+								<span>Admin</span>
+							</a>
+						</li>
+		';
+		}
+	
+	} else { //  Not logged in.
+		echo '	<li>
+							<a href="register.php">
+								<span class="icon"> 
+									<i aria-hidden="true" class="flaticon-social"></i>
+								</span>
+								<span>Register</span>
+							</a>
+						</li>
+						<li>
+							<a href="login.php">
+								<span class="icon">
+									<i aria-hidden="true" class="flaticon-enter"></i>
+								</span>
+								<span>Login</span>
+							</a>
+						</li>
+						<li>
+							<a href="forgot_password.php">
+								<span class="icon">
+									<i aria-hidden="true" class="flaticon-padlock"></i>
+								</span>
+								<span>Forgot Password</span>
+							</a>
+						</li>
+	';
+	}
+	?>
+						
+					</ul>
+				</nav>
+</div>
+	
+
+<div id="Content">
+<!-- End of Header -->
